@@ -475,6 +475,23 @@ class Fitbit(object):
         )
         return self.make_request(url, data=data)
 
+    def get_foods(self, date, user_id=None):
+        return self._food_stats(
+            user_id=user_id, 
+            qualifier="date/%s"%(date)
+        )
+
+    def get_activities(self, date):
+        """
+        https://wiki.fitbit.com/display/API/API-Get-Activity
+        """
+        url = "%s/%s/user/-/activities/date/%s.json" % (
+            self.API_ENDPOINT,
+            self.API_VERSION,
+            date
+        )
+        return self.make_request(url)
+
     def get_meals(self):
         """
         https://wiki.fitbit.com/display/API/API-Get-Meals
