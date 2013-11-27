@@ -681,26 +681,8 @@ class Fitbit(object):
         """
         https://wiki.fitbit.com/display/API/Fitbit+Subscriptions+API
         """
-		method = 'DELETE'
-        if not collection:
-            url = "%s/%s/user/-/apiSubscriptions/%s.json" % (
-                self.API_ENDPOINT,
-                self.API_VERSION,
-                subscription_id
-            )
-        else:
-            url = "%s/%s/user/-/%s/apiSubscriptions/%s-%s.json" % (
-                self.API_ENDPOINT,
-                self.API_VERSION,
-                collection,
-                subscription_id,
-                collection
-            )
-        return self.make_request(
-            url,
-            method=method,
-            headers={"X-Fitbit-Subscriber-id": subscriber_id}
-        )
+		return subscription(subscription_id, subscriber_id, collection=collection,
+							method="DELETE")
 
     def list_subscriptions(self, collection=''):
         """
