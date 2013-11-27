@@ -681,7 +681,7 @@ class Fitbit(object):
         """
         https://wiki.fitbit.com/display/API/Fitbit+Subscriptions+API
         """
-        return subscription(subscription_id, subscriber_id, collection=collection,
+        return self.subscription(subscription_id, subscriber_id, collection=collection,
                             method="DELETE")
 
     def list_subscriptions(self, collection=''):
